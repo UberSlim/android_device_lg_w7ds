@@ -9,4 +9,7 @@ TARGET_SCREEN_HEIGHT := 960
 PRODUCT_RELEASE_NAME := LG L90
 PRODUCT_NAME := cm_w7
 
+# Custom unofficial build tag
+TARGET_UNOFFICIAL_BUILD_ID := temasek
+
 $(call inherit-product, device/lge/w7/full_w7.mk)
