@@ -44,7 +44,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
@@ -87,7 +86,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/lge/w7/rootdir/fstab.w7:root/fstab.w7 \
     device/lge/w7/rootdir/init.w7.rc:root/init.w7.rc \
-    device/lge/w7/rootdir/init.w7.rc:root/init.w7.rc \
     device/lge/w7/rootdir/init.w7.usb.rc:root/init.w7.usb.rc \
     device/lge/w7/rootdir/ueventd.w7.rc:root/ueventd.w7.rc
 
@@ -124,12 +122,47 @@ PRODUCT_PACKAGES += \
     tinypcminfo \
     tinyplay \
     libalsa-intf \
-    libaudio-resampler \
     libaudioutils \
     aplay \
     amix \
     arec \
     alsaucm_test
+    
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio.offload.24bit.enable=false \
+    audio.offload.buffer.size.kb=32 \
+    audio.offload.gapless.enabled=false \
+    audio.offload.multiple.enabled=false \
+    audio.offload.pcm.16bit.enable=true \
+    audio.offload.pcm.24bit.enable=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    av.offload.enable=false \
+    av.streaming.offload.enable=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    mm.enable.smoothstreaming=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.audio.calfile0=/etc/Bluetooth_cal.acdb \
+    persist.audio.calfile1=/etc/General_cal.acdb \
+    persist.audio.calfile2=/etc/Global_cal.acdb \
+    persist.audio.calfile3=/etc/Handset_cal.acdb \
+    persist.audio.calfile4=/etc/Hdmi_cal.acdb \
+    persist.audio.calfile5=/etc/Headset_cal.acdb \
+    persist.audio.calfile6=/etc/Speaker_cal.acdb
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.audio.fluence.voicecall=true \
+    persist.audio.fluence.voicerec=false \
+    persist.audio.fluence.speaker=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.audio.fluencetype=endfire \
+    ro.qc.sdk.audio.ssr=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    use.voice.path.for.pcm.voip=true
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -140,7 +173,6 @@ PRODUCT_PACKAGES += \
     Torch \
     libxml2
 
-# Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
@@ -169,17 +201,6 @@ PRODUCT_PACKAGES += \
     wpa_supplicant.conf \
     libwcnss_qmi \
 
-# GPS
-PRODUCT_PACKAGES += \
-    gps.msm8226
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
-    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
-    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
-    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
-    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
-
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
 
@@ -202,6 +223,13 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8226
+    
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/gps/sap.conf:system/etc/sap.conf
 
 # HAL
 PRODUCT_PACKAGES += \
@@ -232,6 +260,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608
 
 # QCOM Display
+PRODUCT_PACKAGES += \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libqdutils \
+    libtilerenderer
+    
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
@@ -239,14 +274,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.hwc.mdpcomp.enable=true \
     debug.mdpcomp.logs=0 \
     debug.enabletr=0
-
-# QCOM Display
-PRODUCT_PACKAGES += \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libqdutils \
-    libtilerenderer
 
 # Omx
 PRODUCT_PACKAGES += \
@@ -288,43 +315,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.qc.sub.rdump.on=1 \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15
-
-# Audio
-PRODUCT_PROPERTY_OVERRIDES += \
-    audio.offload.24bit.enable=false \
-    audio.offload.buffer.size.kb=32 \
-    audio.offload.gapless.enabled=false \
-    audio.offload.multiple.enabled=false \
-    audio.offload.pcm.16bit.enable=true \
-    audio.offload.pcm.24bit.enable=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    av.offload.enable=false \
-    av.streaming.offload.enable=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    mm.enable.smoothstreaming=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.calfile0=/etc/Bluetooth_cal.acdb \
-    persist.audio.calfile1=/etc/General_cal.acdb \
-    persist.audio.calfile2=/etc/Global_cal.acdb \
-    persist.audio.calfile3=/etc/Handset_cal.acdb \
-    persist.audio.calfile4=/etc/Hdmi_cal.acdb \
-    persist.audio.calfile5=/etc/Headset_cal.acdb \
-    persist.audio.calfile6=/etc/Speaker_cal.acdb
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.audio.fluence.voicecall=true \
-    persist.audio.fluence.voicerec=false \
-    persist.audio.fluence.speaker=true
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.qc.sdk.audio.fluencetype=endfire \
-    ro.qc.sdk.audio.ssr=false
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    use.voice.path.for.pcm.voip=true
 
 # Radio and Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
