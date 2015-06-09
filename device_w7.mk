@@ -89,7 +89,7 @@ PRODUCT_COPY_FILES += \
     device/lge/w7/rootdir/init.w7.usb.rc:root/init.w7.usb.rc \
     device/lge/w7/rootdir/ueventd.w7.rc:root/ueventd.w7.rc
 
-# OTA
+# Unified Support
 PRODUCT_COPY_FILES += \
     device/lge/w7/prebuilt/fixup.sh:fixup.sh
 
@@ -197,9 +197,18 @@ PRODUCT_PACKAGES += \
     wpa_supplicant_overlay.conf \
     libwpa_client \
     hostapd \
+    hostapd.accept \
+    hostapd.deny \
+    hostapd_default.conf \
     wpa_supplicant \
     wpa_supplicant.conf \
     libwcnss_qmi \
+    libnetcmdiface
+    
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.qc.sub.rdump.on=1 \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=60
 
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
@@ -297,24 +306,11 @@ PRODUCT_PACKAGES += \
     resize2fs \
     setup_fs
 
-#wifi
-PRODUCT_PACKAGES += \
-    hostapd.accept \
-    hostapd.deny \
-    hostapd_default.conf \
-    libnetcmdiface
-
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     qcom.bt.le_dev_pwr_class=1 \
     ro.bluetooth.hfp.ver=1.6 \
     ro.qualcomm.bt.hci_transport=smd
-
-# WiFi
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.qc.sub.rdump.on=1 \
-    wifi.interface=wlan0 \
-    wifi.supplicant_scan_interval=15
 
 # Radio and Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -346,13 +342,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1
 
-# CmUpdater
-PRODUCT_PROPERTY_OVERRIDES += \
-    cm.updater.uri=http://api.quarx.cm-for.us/api
-
 # Screen density
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
-PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 $(call inherit-product, vendor/lge/w7/w7-vendor.mk)
 
