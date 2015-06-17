@@ -334,6 +334,12 @@ PRODUCT_PACKAGES += \
 
 NFCEE_ACCESS_PATH := device/lge/w7/prebuilt/etc/nfcee_access.xml
 
+# OTA Updates
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.ota.romname=TemasekCM \
+	ro.ota.version=$(shell date +%F | sed s@-@@g) \
+	ro.ota.manifest=https://romhut.com/roms/temasek-unofficial-cm-builds/ota.xml
+
 # QC time services
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
@@ -347,4 +353,3 @@ PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 $(call inherit-product, vendor/lge/w7/w7-vendor.mk)
-
