@@ -343,7 +343,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ksm.default=1
 
 # Screen density
-PRODUCT_AAPT_CONFIG := normal hdpi xhdpi
+PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 $(call inherit-product, vendor/lge/w7/w7-vendor.mk)
