@@ -336,9 +336,9 @@ NFCEE_ACCESS_PATH := device/lge/w7/prebuilt/etc/nfcee_access.xml
 
 # OTA Updates
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.ota.romname=TemasekCM \
+	ro.ota.romname=UberSlim \
 	ro.ota.version=$(shell date +%F | sed s@-@@g) \
-	ro.ota.manifest=https://romhut.com/roms/temasek-unofficial-cm-builds/ota.xml
+	ro.ota.manifest=https://romhut.com/roms/uberslim/ota.xml
 
 # QC time services
 PRODUCT_PROPERTY_OVERRIDES += \
