@@ -339,6 +339,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.ota.romname=UberSlim \
 	ro.ota.version=$(shell date +%F | sed s@-@@g) \
 	ro.ota.manifest=https://romhut.com/roms/uberslim/ota.xml
+	
+# Default OTA Theme (0=Light Theme | 2=Dark Theme)
+PRODUCT_PROPERTY_OVERRIDES += \
+	ro.ota.default_theme=2
 
 # QC time services
 PRODUCT_PROPERTY_OVERRIDES += \
