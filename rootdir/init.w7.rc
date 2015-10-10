@@ -550,7 +550,7 @@ on charger
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "zzmoove"
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
     chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
@@ -571,7 +571,7 @@ on charger
     write /sys/devices/system/cpu/cpu3/online 1
 
 on property:init.svc.bootanim=running
-    # Switch to balanced mode while booting
+    # Switch to ZZMOOVE while booting
     setprop sys.perf.profile 1
     # Switch to NOOP while booting
     write /sys/block/mmcblk0/queue/scheduler noop
@@ -642,10 +642,10 @@ on property:sys.perf.profile=1
     write /sys/devices/system/cpu/cpu1/online 1
     write /sys/devices/system/cpu/cpu2/online 1
     write /sys/devices/system/cpu/cpu3/online 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor intelliactive
-    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor intelliactive
-    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor intelliactive
-    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor intelliactive
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor zzmoove
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor zzmoove
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor zzmoove
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor zzmoove
     write /sys/class/devfreq/fdb00000.qcom,kgsl-3d0/governor msm-adreno-tz
     write /sys/class/devfreq/qcom,cpubw.63/governor msm_cpufreq
     start mpdecision
