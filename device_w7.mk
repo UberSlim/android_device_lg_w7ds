@@ -183,8 +183,8 @@ PRODUCT_PACKAGES += \
     com.cyanogenmod.keyhandler
 
 # Keystore
-PRODUCT_PACKAGES += \
-    keystore.msm8226
+# PRODUCT_PACKAGES += \
+#    keystore.msm8226
 
 # Crda
 PRODUCT_PACKAGES += \
@@ -218,9 +218,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Charger
 PRODUCT_PACKAGES += charger charger_res_images
-
-# QRNGD
-PRODUCT_PACKAGES += qrngd
 
 # Ebtables
 PRODUCT_PACKAGES += \
@@ -264,7 +261,8 @@ PRODUCT_PACKAGES += \
     mkfs.f2fs \
     fsck.f2fs \
     fibmap.f2fs \
-    wcnss_service
+    wcnss_service \
+    librmnetctl
 
 # Opengles version 3
 PRODUCT_PROPERTY_OVERRIDES += \
